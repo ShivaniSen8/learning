@@ -1,0 +1,2 @@
+this is the file to test the git stash command
+from conflict branch to test the stash

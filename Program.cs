@@ -1,6 +1,7 @@
 using InventoryServiceAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using InventoryServiceAPI.Repositories;
+using InventoryServiceAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +13,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<InventoryDbContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Configuration.GetConnectionString("InventoryDatabase")));
 
 builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
+builder.Services.AddScoped<IInventoryService, InventoryService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
